@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\About;
 
-class portofolioHome extends Controller
+
+class AboutController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -13,7 +15,16 @@ class portofolioHome extends Controller
      */
     public function index()
     {
-        //
+        $data = array(
+            "id" => "abouts",
+            "abouts" => About::all()
+        );
+        return view('about.index')->with($data);
+    }
+
+    public function __construct()
+    {
+     $this->middleware('auth');
     }
 
     /**

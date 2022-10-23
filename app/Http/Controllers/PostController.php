@@ -22,7 +22,10 @@ class PostController extends Controller
         return view('posts.index')->with($data);
     }
 
-   
+    public function __construct()
+    {
+     $this->middleware('auth', ["except" => ["index","show"]]);
+    }
 
     /**
      * Show the form for creating a new resource.

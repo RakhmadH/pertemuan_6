@@ -2,6 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Models\Post;
+use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\Auth\AboutController;
 
 
 /*
@@ -26,12 +28,13 @@ Route::get('/portofolio', function () {
     ]);
 });
 
-Route::get('/about', function () {
-    return view('about',[
-        "title"=>"Post",
-        "post"=>Post::getAbout()
-    ]);
-});
+// Route::get('/about', function () {
+//     return view('about',[
+//         "title"=>"Post",
+//         "post"=>Post::getAbout()
+//     ]);
+// });
+
 
 Route::get('/education', function () {
     return view('education',[
@@ -50,7 +53,13 @@ Route::get('/projects', function () {
 Route::resource('posts',
 'App\Http\Controllers\PostController');
 
+Route::resource('about',
+'App\Http\Controllers\AboutController');
 
-Auth::routes();
+
+Auth::routes([
+    'reset' => false,
+   ]);
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/logout', [LoginController::class, 'logout'])->name('logout');
