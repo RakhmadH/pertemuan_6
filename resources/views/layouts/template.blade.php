@@ -26,6 +26,7 @@
         <a class="nav-link" href="/education">Education </a>
         <a class="nav-link" href="/projects">Projects </a>
         <a class="nav-link" href="/posts">Blogs </a>
+        <a class="nav-link" href="/send-email">Email </a>
     </ul>
 </nav>
     @yield('content')
