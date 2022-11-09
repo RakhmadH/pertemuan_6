@@ -3,7 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 use App\Models\Post;
+use Illuminate\Support\Facades\File;
+use Intervention\Image\Facades\Image;
 
 
 class PostController extends Controller
@@ -45,10 +48,21 @@ class PostController extends Controller
         $this->validate($request,[
 
         'title' => 'required|string|max:50',
-        'description' => 'required|string|min:5'
+        'description' => 'required|string|min:5',
+        'picture' => 'image|nullable|max:1999'
         ]);
-
+        if ($request->hasFile('picture')){
+            $image = $request->file('picture');
+            $filenameWithExt = $image->getClientOriginalName(); 
+            $filename = pathinfo($filenameWithExt, PATHINFO_FILENAME);
+            $extension = $request->file('picture')->getClientOriginalExtension();
+            $filenameSimpan = $filename . '_' . time() . '.' . $extension;
+            $path = $request->file('picture')->storeAs('public/posts_image', $filenameSimpan);
+        }else{  
+           $filenameSimpan = "noimage.png";
+        }
         $post = new Post;
+        $post->picture = $filenameSimpan;
         $post->title = $request->input('title');
         $post->description = $request->input('description');
         $post->save();
@@ -96,13 +110,23 @@ class PostController extends Controller
      */
     public function update(Request $request, $id)
     {
+        if($request->hasFile('picture')){
+            $image = $request->file('picture');
+            $filenameWithExt = $image->getClientOriginalName(); 
+            $filename = pathinfo($filenameWithExt, PATHINFO_FILENAME);
+            $extension = $image->getClientOriginalExtension();
+            $filenameSimpan = $filename . '_' . time() . '.' . $extension;
+            $image->move('public/posts_image',$filenameSimpan);
+        }
         Post::where('id',$request->id)->update([
             'title'=> $request->title,
-            'description'=>$request->description
+            'description'=>$request->description,
         ]);
 
+    
         return redirect('posts')->with('alert','Data Berhasil Terupdate!');
     }
+    
 
     /**
      * Remove the specified resource from storage.
@@ -113,7 +137,9 @@ class PostController extends Controller
     public function destroy($id)
     {
         $post = Post::find($id);
+        File::delete(public_path() . '/storage/posts_image/'. $post->picture);
         $post->delete();
+        
         return redirect('posts')->with('alert','Data Berhasil Dihapus !');
     }
 
