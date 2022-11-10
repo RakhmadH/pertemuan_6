@@ -37,6 +37,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
         <a class="nav-link" href="/posts">Blogs </a>
         <a class="nav-link" href="/send-email">Email </a>
     </ul>
+
 </nav>
 
     @yield('content')

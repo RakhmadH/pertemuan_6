@@ -3,7 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 use App\Models\Post;
+use Illuminate\Support\Facades\File;
+use Intervention\Image\Facades\Image;
 
 
 class PostController extends Controller
@@ -49,15 +52,37 @@ class PostController extends Controller
         $this->validate($request,[
 
         'title' => 'required|string|max:50',
-        'description' => 'required|string|min:5'
+        'description' => 'required|string|min:5',
+        'picture' => 'image|nullable|max:1999'
         ]);
+        if ($request->hasFile('picture')){
+            $filenameWithExt = $request->file('picture')->getClientOriginalName(); 
+            $filename = pathinfo($filenameWithExt, PATHINFO_FILENAME);
+            $extension = $request->file('picture')->getClientOriginalExtension();
+            $filenameSimpan = $filename . '_' . time() . '.' . $extension;
+            $path = $request->file('picture')->storeAs('public/posts_image', $filenameSimpan);
 
+            $basename = uniqid(). time();
+            $smallFilename= "small_{$basename} . {$extension}";
+            $mediumFilename= "medium_{$basename} . {$extension}";
+            $largeFilename= "large_{$basename} . {$extension}";
+        }else{  
+           $filenameSimpan = "noimage.png";
+        }
         $post = new Post;
+        $post->picture = $filenameSimpan;
         $post->title = $request->input('title');
         $post->description = $request->input('description');
         $post->save();
         return redirect('posts')->with('alert','Data Berhasil Ditambahkan !');
 
+    }
+
+    public function createThumbnail($path, $width, $height){
+
+        $img = Image::make($path)->resize($width,$height, function($constraint){
+            $constraint->aspectRatio();
+        });
     }
 
     /**
@@ -100,13 +125,25 @@ class PostController extends Controller
      */
     public function update(Request $request, $id)
     {
+        if ($request->hasFile('picture')){
+            $filenameWithExt = $request->file('picture')->getClientOriginalName(); 
+            $filename = pathinfo($filenameWithExt, PATHINFO_FILENAME);
+            $extension = $request->file('picture')->getClientOriginalExtension();
+            $filenameSimpan = $filename . '_' . time() . '.' . $extension;
+            $path = $request->file('picture')->storeAs('public/posts_image', $filenameSimpan);
+        }else{  
+            $filenameSimpan = "noimage.png";
+        }
         Post::where('id',$request->id)->update([
             'title'=> $request->title,
-            'description'=>$request->description
+            'description'=>$request->description,
+            'picture'=>$filenameSimpan
         ]);
 
+    
         return redirect('posts')->with('alert','Data Berhasil Terupdate!');
     }
+    
 
     /**
      * Remove the specified resource from storage.
@@ -117,7 +154,9 @@ class PostController extends Controller
     public function destroy($id)
     {
         $post = Post::find($id);
+        File::delete(public_path() . '/storage/posts_image/'. $post->picture);
         $post->delete();
+        
         return redirect('posts')->with('alert','Data Berhasil Dihapus !');
     }
 

@@ -7,8 +7,7 @@ use App\Http\Controllers\Auth\AboutController;
 use App\Http\Controllers\SendEmailController;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\SendEmail;
-use App\Http\Controllers\Auth\LoginController;
-use App\Http\Controllers\Auth\AboutController;
+
 
 
 
@@ -41,6 +40,8 @@ Route::get('/about', function () {
         "post"=>Post::getAbout()
     ]);
 });
+
+
 
 
 // Route::get('/about', function () {
