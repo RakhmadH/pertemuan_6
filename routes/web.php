@@ -4,6 +4,12 @@ use Illuminate\Support\Facades\Route;
 use App\Models\Post;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\AboutController;
+use App\Http\Controllers\SendEmailController;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\SendEmail;
+use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\Auth\AboutController;
+
 
 
 /*
@@ -28,6 +34,15 @@ Route::get('/portofolio', function () {
     ]);
 });
 
+
+Route::get('/about', function () {
+    return view('about',[
+        "title"=>"Post",
+        "post"=>Post::getAbout()
+    ]);
+});
+
+
 // Route::get('/about', function () {
 //     return view('about',[
 //         "title"=>"Post",
@@ -35,7 +50,17 @@ Route::get('/portofolio', function () {
 //     ]);
 // });
 
-
+// Route::get('/send-email',function(){
+//     $data = [
+//     'name' => 'Mamad',
+//     'body' => 'Testing Kirim Email'
+//     ];
+   
+//     Mail::to('mamatgomek@gmail.com')->send(new SendEmail($data));
+   
+//     dd("Email Berhasil dikirim.");
+// });
+   
 Route::get('/education', function () {
     return view('education',[
         "title"=>"Post",
@@ -57,9 +82,15 @@ Route::resource('about',
 'App\Http\Controllers\AboutController');
 
 
+
+Auth::routes();
+Route::get('/send-email', [SendEmailController::class, 'index'])->name('kirim-email');
+Route::post('/post-email', [SendEmailController::class, 'store'])->name('post-email');
+
 Auth::routes([
-    'reset' => false,
+
    ]);
+
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::get('/logout', [LoginController::class, 'logout'])->name('logout');

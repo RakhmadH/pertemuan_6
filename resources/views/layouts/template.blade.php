@@ -24,6 +24,21 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
     @include('layouts.header')
 
+
+    <!-- Scripts -->
+    @vite(['resources/sass/app.scss', 'resources/js/app.js'])
+<nav class="navbar navbar-expand-sm navbar-dark bg-dark">
+  <a class="navbar-brand" href="/portofolio" style='padding-left:20px'>Home</a>
+
+    <ul class="navbar-nav mr-auto">
+        <a class="nav-link" href="/about">About </a>
+        <a class="nav-link" href="/education">Education </a>
+        <a class="nav-link" href="/projects">Projects </a>
+        <a class="nav-link" href="/posts">Blogs </a>
+        <a class="nav-link" href="/send-email">Email </a>
+    </ul>
+</nav>
+
     @yield('content')
 
     <!-- Control Sidebar -->

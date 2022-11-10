@@ -1,6 +1,7 @@
 @extends('layouts.template')
 
 @section('content')
+
     <div class='center' style="height: 100vh;margin:50px">
         <div class='d-flex flex-row '>
             @if(count($abouts)>0)
