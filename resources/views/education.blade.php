@@ -1,7 +1,7 @@
 @extends('layouts.template')
 
 @section('content')
-<div style="padding:20px;">
+<div  style="height: 100vh;margin:50px">
        
        <div class='d-flex flex-column'>
            <div class='p-2'>

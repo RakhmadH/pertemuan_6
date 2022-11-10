@@ -33,12 +33,16 @@ Route::get('/portofolio', function () {
     ]);
 });
 
+
 Route::get('/about', function () {
     return view('about',[
         "title"=>"Post",
         "post"=>Post::getAbout()
     ]);
 });
+
+
+
 
 // Route::get('/about', function () {
 //     return view('about',[
@@ -75,7 +79,19 @@ Route::get('/projects', function () {
 Route::resource('posts',
 'App\Http\Controllers\PostController');
 
+Route::resource('about',
+'App\Http\Controllers\AboutController');
+
+
 
 Auth::routes();
+Route::get('/send-email', [SendEmailController::class, 'index'])->name('kirim-email');
+Route::post('/post-email', [SendEmailController::class, 'store'])->name('post-email');
+
+Auth::routes([
+
+   ]);
+
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/logout', [LoginController::class, 'logout'])->name('logout');
