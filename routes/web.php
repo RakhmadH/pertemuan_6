@@ -2,16 +2,14 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Models\Post;
-<<<<<<< Updated upstream
-=======
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\AboutController;
 use App\Http\Controllers\SendEmailController;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\SendEmail;
+use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\Auth\AboutController;
 
-
->>>>>>> Stashed changes
 
 
 /*
@@ -36,7 +34,7 @@ Route::get('/portofolio', function () {
     ]);
 });
 
-<<<<<<< Updated upstream
+
 Route::get('/about', function () {
     return view('about',[
         "title"=>"Post",
@@ -44,7 +42,7 @@ Route::get('/about', function () {
     ]);
 });
 
-=======
+
 // Route::get('/about', function () {
 //     return view('about',[
 //         "title"=>"Post",
@@ -63,7 +61,6 @@ Route::get('/about', function () {
 //     dd("Email Berhasil dikirim.");
 // });
    
->>>>>>> Stashed changes
 Route::get('/education', function () {
     return view('education',[
         "title"=>"Post",
@@ -81,16 +78,19 @@ Route::get('/projects', function () {
 Route::resource('posts',
 'App\Http\Controllers\PostController');
 
+Route::resource('about',
+'App\Http\Controllers\AboutController');
 
-<<<<<<< Updated upstream
+
+
 Auth::routes();
-=======
-Auth::routes([
-   
-   ]);
->>>>>>> Stashed changes
-
 Route::get('/send-email', [SendEmailController::class, 'index'])->name('kirim-email');
 Route::post('/post-email', [SendEmailController::class, 'store'])->name('post-email');
 
+Auth::routes([
+
+   ]);
+
+
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/logout', [LoginController::class, 'logout'])->name('logout');

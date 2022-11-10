@@ -1,7 +1,7 @@
 @extends('layouts.template')
 
 @section('content')
-    <div class='center'>
+    <div class='center' style="height: 100vh;margin:50px">
         <div class='d-flex flex-row '>
             <img src="{{ $post['image'] }}" alt="foto" width="300px"height="300px" style='border-radius:50%'>
            

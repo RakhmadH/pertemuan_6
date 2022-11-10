@@ -17,12 +17,16 @@ class PostController extends Controller
     {
         $data = array(
             "id" => "posts",
-            "posts" => Post::all()
+            "posts" => Post::orderBy('created_at', 'desc')->paginate(10)
         );
         return view('posts.index')->with($data);
+
     }
 
-   
+    public function __construct()
+    {
+     $this->middleware('auth', ["except" => ["index","show"]]);
+    }
 
     /**
      * Show the form for creating a new resource.
