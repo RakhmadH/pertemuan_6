@@ -17,12 +17,12 @@ scratch. This page gets rid of all links and provides the needed markup only.
   <link rel="stylesheet" href="{{ asset('lte/plugins/fontawesome-free/css/all.min.css')}}">
   <!-- Theme style -->
   <link rel="stylesheet" href="{{ asset('lte/dist/css/adminlte.min.css')}}">
+  <link rel="stylesheet" href="{{ asset('lightbox2/dist/css/lightbox.min.css')}}">
 </head>
 
 <body class="hold-transition layout-top-nav">
   <div class="wrapper">
 
-    @include('layouts.header')
 
 
     <!-- Scripts -->
@@ -36,6 +36,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
         <a class="nav-link" href="/projects">Projects </a>
         <a class="nav-link" href="/posts">Blogs </a>
         <a class="nav-link" href="/send-email">Email </a>
+        <a class="nav-link" href="/gallery">Gallery </a>
     </ul>
 
 </nav>
@@ -60,6 +61,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
   <script src="{{asset('lte/plugins/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
   <!-- AdminLTE App -->
   <script src="{{asset('lte/dist/js/adminlte.min.js')}}"></script>
+  <script src="{{ asset('lightbox2/dist/js/lightbox-plus-jquery.min.js')}}"></script>
   <!-- AdminLTE for demo purposes -->
   <!-- <script src="{{asset('lte/dist/js/demo.js')}}"></script> -->
 </body>
