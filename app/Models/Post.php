@@ -61,6 +61,42 @@ class Post extends Model
     {
         return self::$projects;
     }
+
+    protected $casts = [
+        'created_at' => 'datetime',
+        'updated_at' => 'datetime',
+    ];
+
+    protected $appends = [
+        'small_pict',
+        'medium_pict',
+        'large_pict',
+        'original_pict',
+        'pict_queue_no',
+    ];
+
+    public function getSmallPictAttribute()
+    {
+        $path = "storage/posts_image/small_{$this->picture}";
+        return asset($path);
+    }
+    public function getMediumPictAttribute()
+    {
+        $path = "storage/posts_image/medium_{$this->picture}";
+        return asset($path);
+    }
+
+    public function getLargePictAttribute()
+    {
+        $path = "storage/posts_image/large_{$this->picture}";
+        return asset($path);
+    }
+    public function getOriginalPictAttribute()
+    {
+        $path = "storage/posts_image/{$this->picture}";
+        return asset($path);
+    }
+
 }
 
 

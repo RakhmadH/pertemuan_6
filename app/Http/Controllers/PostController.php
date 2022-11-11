@@ -59,13 +59,29 @@ class PostController extends Controller
             $filenameWithExt = $request->file('picture')->getClientOriginalName(); 
             $filename = pathinfo($filenameWithExt, PATHINFO_FILENAME);
             $extension = $request->file('picture')->getClientOriginalExtension();
-            $filenameSimpan = $filename . '_' . time() . '.' . $extension;
-            $path = $request->file('picture')->storeAs('public/posts_image', $filenameSimpan);
 
             $basename = uniqid(). time();
             $smallFilename= "small_{$basename} . {$extension}";
             $mediumFilename= "medium_{$basename} . {$extension}";
             $largeFilename= "large_{$basename} . {$extension}";
+
+            $filenameSimpan = "{$basename}.{$extension}";
+            $path = $request->file('picture')->storeAs('public/posts_image', $filenameSimpan);
+
+            $request->file('picture')->storeAs("public/posts_image", $smallFilename);
+            $request->file('picture')->storeAs("public/posts_image", $mediumFilename);
+            $request->file('picture')->storeAs("public/posts_image", $largeFilename);
+
+            // small
+            $smallThumbnailPath = storage_path("app/public/posts_image/{$smallFilename}");
+            $this->createThumbnail($smallThumbnailPath, 150, 93);
+            //medium
+            $mediumThumbnailPath = storage_path("app/public/posts_image/{$mediumFilename}");
+            $this->createThumbnail($mediumThumbnailPath, 300, 185);
+            //large
+            $largeThumbnailPath = storage_path("app/public/posts_image/{$largeFilename}");
+            $this->createThumbnail($largeThumbnailPath, 550, 340);
+
         }else{  
            $filenameSimpan = "noimage.png";
         }

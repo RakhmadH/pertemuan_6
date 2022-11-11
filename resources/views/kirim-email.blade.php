@@ -1,6 +1,6 @@
 @extends('layouts.template')
 @section('content')
-<div class="jumbotron jumbotron-fluid" style='padding:20px;'>
+<div class="jumbotron jumbotron-fluid" style='padding:20px;height:100vh'>
     <h3 class="text-center my-2">Kirim Email</h3>
     <div class="container">
     {{-- send email --}}

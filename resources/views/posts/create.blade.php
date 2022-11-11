@@ -1,6 +1,6 @@
 @extends('layouts.template')
 @section('content')
-    <div class="jumbotron jumbotron-fluid" style='padding:20px;'>
+    <div class="jumbotron jumbotron-fluid" style='padding:20px;height:100vh'>
         <div class="container">
             <h1>Add Blog Posts</h1>
             <form action="{{route('posts.store')}}" method="POST" enctype="multipart/form-data">
@@ -38,9 +38,11 @@
 
     <script>
         function loadFile(event){
-          alert('ok');
+          
           var output = document.querySelector('.preview');
           output.src = URL.createObjectURL(event.target.files[0]);
+          alert('foto telah diupload !');
+         
 
         }
      
