@@ -5,6 +5,7 @@ use App\Models\Post;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\AboutController;
 use App\Http\Controllers\SendEmailController;
+use App\Http\Controllers\GreetController;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\SendEmail;
 
@@ -94,4 +95,8 @@ Auth::routes([
 
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+Route::resource('gallery', 'App\Http\Controllers\GalleryController');
+Route::resource('gallery2', 'App\Http\Controllers\GalleryController');
 Route::get('/logout', [LoginController::class, 'logout'])->name('logout');
+Route::get('/greet', [GreetController::class, 'greet'])->name('greeting');

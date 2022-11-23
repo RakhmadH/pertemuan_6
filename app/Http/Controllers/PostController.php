@@ -71,7 +71,7 @@ class PostController extends Controller
         }
         $post = new Post;
         $post->picture = $filenameSimpan;
-        $post->title = $request->input('title');
+        $post->picture = $filenameSimpan;
         $post->description = $request->input('description');
         $post->save();
         return redirect('posts')->with('alert','Data Berhasil Ditambahkan !');
