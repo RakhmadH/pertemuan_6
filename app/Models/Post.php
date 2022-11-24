@@ -13,7 +13,7 @@ class Post extends Model
     [
         "header" => "Selamat Datang",
         "content" => "Laman ini merupakan Landing Page tugas portofolio. Saya ngga tau pak mau diisi apa, portofolio saya masih kosong ya jadi cuma teks aja sih. atau mau diisi apa lagi ini teksnya cuma buat isian aja.",
-        "image"=> "http://127.0.0.1:8000/asset/selamat_datang.png"
+        "image"=> "{{asset('asset/merenung.png')}}"
     ];
 
     public static function getHome()
