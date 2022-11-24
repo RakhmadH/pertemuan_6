@@ -11,7 +11,7 @@
                  <ul>
                     <h5>-  {{$p}}</h5> 
                     <br>
-                    <img src="{{$gp}}" width="200px"height="200px">
+                    <img src="{{ asset('asset/logo.png')}}" width="200px"height="200px">
                  </ul>
                  @endforeach
             </div>
@@ -19,7 +19,7 @@
                 <h2>{{$post['tambahan']}}</h2>
                 <br>
                 <div class="d-flex flex-row">
-                    <img src="{{ $post['logo_wa'] }}" alt="Wangsaff" width="100px"height="100px">
+                    <img src="{{asset('asset/wangsaff.png')}}" alt="Wangsaff" width="100px"height="100px">
                     <a href='https://wa.me/qr/6Y3VQUZ7C4V2C1' style='padding:25px 20px 20px 0px'>
                         <h3>{{$post['nomor']}}</h3>
                     </a>
