@@ -22,11 +22,11 @@
                 <div class='form-group'>
                     <label for='picture'>File Input</label>
                     <div class="input-group">
-                        <!-- <div class="custom-file">
-                            <img class = "preview img-fluid mb-3 col-sm-5" src="" width='' height=''><br>
+                        <div class="custom-file">
+                           
                             <label class="custom-file-label" for="input-file">Choose file : </label>
                             <input type="file" class="custom-file-input" id="input-file" name="picture" onchange="loadFile(event)">
-                        </div> -->
+                        </div>
                     </div>
                       
                 </div>
