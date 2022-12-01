@@ -10,7 +10,7 @@
         </div>
         @endif
         <form action="{{ route('post-email') }}" method="post">
-            @csrf
+        <input type="hidden" name="_token" value="{{ csrf_token() }}">
             <div class="form-group">
                 <label for="name">Nama</label>
                 <input type="text" class="form-control" name="name" id="name" placeholder="Nama">
