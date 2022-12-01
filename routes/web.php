@@ -96,3 +96,4 @@ Auth::routes([
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::resource('gallery', 'App\Http\Controllers\GalleryController');
 Route::get('/logout', [LoginController::class, 'logout'])->name('logout');
+URL::forceScheme('https');
