@@ -2,7 +2,7 @@
 
 @section('content')
     <div class='center' style="height: 100vh;margin:50px">
-        <div class='d-flex flex-row '>
+        <div class='d-flex flex-column ' style="align-item:center;">
             <img src="{{asset('asset/profil.png')}}" alt="foto" width="300px"height="300px" style='border-radius:50%'>
            
             <div class='d-flex flex-column'>

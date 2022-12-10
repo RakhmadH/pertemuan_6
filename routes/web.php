@@ -11,6 +11,7 @@ use App\Mail\SendEmail;
 
 
 
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -88,12 +89,9 @@ Auth::routes();
 Route::get('/send-email', [SendEmailController::class, 'index'])->name('kirim-email');
 Route::post('/post-email', [SendEmailController::class, 'store'])->name('post-email');
 
-Auth::routes([
 
-   ]);
 
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::resource('gallery', 'App\Http\Controllers\GalleryController');
 Route::get('/logout', [LoginController::class, 'logout'])->name('logout');
-URL::forceScheme('https');
